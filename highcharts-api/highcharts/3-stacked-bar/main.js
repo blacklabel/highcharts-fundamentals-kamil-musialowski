@@ -1,10 +1,13 @@
 const chart = Highcharts.chart('container', {
+
     chart: {
         type: 'bar',
     },
+
     legend: {
         enabled: false,
     },
+
     title: {
         text: '',
     },
@@ -14,11 +17,13 @@ const chart = Highcharts.chart('container', {
             stacking: 'normal',
         },
     },
+
     xAxis: {
         categories: ['Data', 'Emails', 'Duplicates', 'Support'],
         gridLineWidth: 1,
         lineWidth: 0,
     },
+
     yAxis: {
         title: {
             text: 'Amount',
@@ -35,6 +40,7 @@ const chart = Highcharts.chart('container', {
         softMax: 400,
         gridLineWidth: 0,
     },
+
     series: [
         {
             data: [25, 0, 20, 15],
