@@ -103,7 +103,7 @@ const chart = Highcharts.chart('container', {
 
             tickPositioner: function () {
                 // Return an original array of ticks + force to show 2x max 'y' value tick
-                return [...chart.tickPositions, dataMax * 2];
+                return [...this.tickPositions, dataMax * 2];
             },
         });
     }
