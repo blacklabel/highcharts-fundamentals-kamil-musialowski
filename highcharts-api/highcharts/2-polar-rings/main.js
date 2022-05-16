@@ -106,5 +106,15 @@ const chart = Highcharts.chart('container', {
                 return [...this.tickPositions, dataMax * 2];
             },
         });
+        // Render a non-responsive circle using 'renderer' function
+        const ren = chart.renderer,
+            x = chart.yAxis[0].center[0] + chart.plotTop,
+            y = chart.yAxis[0].center[1] + chart.plotLeft;
+
+        ren.circle(x, y, 115).attr({
+            fill: 'transparent',
+            stroke: "purple",
+            'stroke-width': 2,
+        }).add()
     }
 );
