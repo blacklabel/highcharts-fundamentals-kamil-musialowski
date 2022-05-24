@@ -6,7 +6,7 @@ function randomData(minVal, maxVal, length) {
     return newArr;
 }
 
-const chart = Highcharts.chart('container', {
+Highcharts.chart('container', {
     chart: {
         type: 'packedbubble',
         height: '80%',
