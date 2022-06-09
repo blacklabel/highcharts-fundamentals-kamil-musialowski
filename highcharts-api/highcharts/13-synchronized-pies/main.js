@@ -43,7 +43,7 @@ function hoverOff(hoveredPoint) {
     const chart = hoveredPoint.series.chart;
 
     chart.tooltips.map(tooltip => {
-        tooltip.hide()
+        tooltip.hide();
     });
 }
 
@@ -83,7 +83,7 @@ Highcharts.chart('container', {
                             // Choose corresponding points in each series
                             series.points.map(point => {
                                 if (clickedPoint.name === point.name) {
-                                    point.setVisible(!point.visible)
+                                    point.setVisible(!point.visible);
                                 };
                             });
                         });
