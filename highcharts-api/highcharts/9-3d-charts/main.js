@@ -8,20 +8,24 @@ Highcharts.chart('container', {
             alpha: 10,
             beta: 50,
             depth: 450,
-            viewDistance: 5,
-        },
+            viewDistance: 5
+        }
+    },
+
+    legend: {
+        enabled: false
     },
 
     plotOptions: {
         series: {
             planeProjection: {
                 enabled: true,
-                byPoint: true,
+                byPoint: true
             },
             lineProjection: {
                 enabled: true,
                 colorByPoint: true
-            },
+            }
         }
     },
 
@@ -29,24 +33,20 @@ Highcharts.chart('container', {
         text: ''
     },
 
-    legend: {
-        enabled: false,
+    xAxis: {
+        min: 0,
+        max: 10
     },
 
     yAxis: {
         min: 0,
-        max: 10,
-    },
-
-    xAxis: {
-        min: 0,
-        max: 10,
+        max: 10
     },
 
     zAxis: {
         min: 0,
         max: 10,
-        showFirstLabel: false,
+        showFirstLabel: false
     },
 
     series: [{
@@ -112,6 +112,7 @@ Highcharts.chart('container', {
             }
         }]
     }]
+
 }, function (chart) {
     const series = chart.series[0],
         cos = Math.cos,
