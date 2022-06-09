@@ -4,7 +4,7 @@ Highcharts.chart('container', {
         series: {
             states: {
                 inactive: false
-            },
+            }
         }
     },
 
@@ -40,13 +40,13 @@ Highcharts.chart('container', {
                         scatterPointsArr = Highcharts.charts[0].series[1].data;
 
                     // Deselect all points
-                    scatterPointsArr[0].select(false, false)
+                    scatterPointsArr[0].select(false, false);
 
                     scatterPointsArr.forEach((point) => {
                         if (x1 <= point.y && x2 >= point.y) {
-                            point.select(true, true)
+                            point.select(true, true);
                         }
-                    })
+                    });
                 }
             }
         }
@@ -55,4 +55,5 @@ Highcharts.chart('container', {
         type: 'scatter',
         data: [3, 4, 5, 3, 2, 3, 2, 3, 4, 5, 3, 6, 3, 2, 4, 5, 5, 6, 6, 1, 6, 6, 2, 1, 3, 5, 6]
     }]
-})
+
+});
