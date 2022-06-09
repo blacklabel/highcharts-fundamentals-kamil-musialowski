@@ -23,29 +23,29 @@ function hoverOn(hoveredPoint) {
         allSeries = chart.series;
 
     allSeries.map(series => {
-        // Choose all of the other series than the hovered one
+        // Choose all seriers other than the hovered one
         if (hoveredPoint.series.name === series.name) return;
 
         // Set hover state and display tooltip on the same point in other series
         series.points.map(point => {
             if (point.index === hoveredPoint.index) {
-                point.setState('hover')
+                point.setState('hover');
 
                 chart.tooltips.map(tooltip => {
-                    tooltip.refresh(point)
-                })
+                    tooltip.refresh(point);
+                });
             }
-        })
-    })
-};
+        });
+    });
+}
 
 function hoverOff(hoveredPoint) {
     const chart = hoveredPoint.series.chart;
 
     chart.tooltips.map(tooltip => {
         tooltip.hide()
-    })
-};
+    });
+}
 
 Highcharts.chart('container', {
 
@@ -56,8 +56,8 @@ Highcharts.chart('container', {
             load() {
                 const chart = this;
                 chart.tooltips = chart.series.slice(1).map(() => {
-                    return new Highcharts.Tooltip(chart, Highcharts.merge(chart.options.tooltip))
-                })
+                    return new Highcharts.Tooltip(chart, Highcharts.merge(chart.options.tooltip));
+                });
             }
         }
     },
@@ -74,7 +74,7 @@ Highcharts.chart('container', {
             point: {
                 events: {
                     legendItemClick(e) {
-                        e.preventDefault()
+                        e.preventDefault();
 
                         const allSeries = this.series.chart.series,
                             clickedPoint = e.target;
@@ -84,18 +84,18 @@ Highcharts.chart('container', {
                             series.points.map(point => {
                                 if (clickedPoint.name === point.name) {
                                     point.setVisible(!point.visible)
-                                }
-                            })
-                        })
+                                };
+                            });
+                        });
 
                     },
                     mouseOver() {
                         const point = this;
-                        hoverOn(point)
+                        hoverOn(point);
                     },
                     mouseOut() {
                         const point = this;
-                        hoverOff(point)
+                        hoverOff(point);
                     }
                 }
             },
