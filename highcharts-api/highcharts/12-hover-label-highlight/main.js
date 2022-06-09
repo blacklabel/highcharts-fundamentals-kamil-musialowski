@@ -1,5 +1,6 @@
-function randomData(minVal, maxVal, length) {
+function getRandomData(minVal, maxVal, length) {
     const newArr = [];
+
     for (let i = 0; i < length; i++) {
         newArr.push(Math.round(Math.random() * (maxVal - minVal)) + minVal);
     }
@@ -22,10 +23,18 @@ Highcharts.chart('container', {
             point: {
                 events: {
                     mouseOver() {
-                        customLabelFormat(this.series.chart, this.x, { fontSize: 14, fontWeight: 700, color: 'red' });
+                        customLabelFormat(
+                            this.series.chart,
+                            this.x,
+                            { fontSize: 14, fontWeight: 700, color: 'red' }
+                        );
                     },
                     mouseOut() {
-                        customLabelFormat(this.series.chart, this.x, { fontSize: 11, fontWeight: 300, color: 'black' });
+                        customLabelFormat(
+                            this.series.chart,
+                            this.x,
+                            { fontSize: 11, fontWeight: 300, color: 'black' }
+                        );
                     }
                 }
             }
@@ -42,16 +51,16 @@ Highcharts.chart('container', {
 
     series: [{
         name: 'Tokyo',
-        data: randomData(1, 10, 12)
+        data: getRandomData(1, 10, 12)
     }, {
         name: 'New York',
-        data: randomData(1, 10, 12)
+        data: getRandomData(1, 10, 12)
     }, {
         name: 'London',
-        data: randomData(1, 10, 12)
+        data: getRandomData(1, 10, 12)
     }, {
         name: 'Berlin',
-        data: randomData(1, 10, 12)
+        data: getRandomData(1, 10, 12)
     }]
 
 });
