@@ -1,5 +1,15 @@
 Highcharts.ganttChart('container', {
 
+    xAxis: [{
+        dateTimeLabelFormats: {
+            week: '%A, %e %b, %Y'
+        }
+    }],
+
+    yAxis: {
+        uniqueNames: true
+    },
+
     series: [{
         name: 'Project 1',
         data: [{
@@ -21,3 +31,4 @@ Highcharts.ganttChart('container', {
     }]
 
 });
+
