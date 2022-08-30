@@ -19,22 +19,31 @@ function hideNodeAndLink(link) {
 }
 
 function handleClick(e) {
-    const point = e.point;
+    const clickedPoint = e.point;
 
     // Prevent from calling functions on nodes without children
-    if (!point.linksFrom.length) return;
+    if (!clickedPoint.linksFrom.length) return;
 
-    if (point.linksHidden) {
-        point.linksHidden = false;
+    if (clickedPoint.linksHidden) {
+        clickedPoint.linksHidden = false;
 
-        point.linksFrom.forEach(link => {
-            hideNodeAndLink(link);
-        });
+        function hideAllChildren(point) {
+            point.linksFrom.forEach(link => {
+                const point = link.toNode;
+
+                hideNodeAndLink(link);
+
+                if(point.linksFrom.length) {
+                    hideAllChildren(point);
+                }
+            });
+        }
+        hideAllChildren(clickedPoint);
 
     } else {
-        point.linksHidden = true;
+        clickedPoint.linksHidden = true;
 
-        point.linksFrom.forEach(link => {
+        clickedPoint.linksFrom.forEach(link => {
             showNodeAndLink(link);
         });
     }
