@@ -1,5 +1,5 @@
 // Generate an array of random numbers
-function randomData(minVal, maxVal, length) {
+function generateRandomData(minVal, maxVal, length) {
     const newArr = [];
     for (let i = 0; i < length; i++) {
         newArr.push(Math.round(Math.random() * (maxVal - minVal)) + minVal)
@@ -15,6 +15,13 @@ function getMaxValue(points) {
     return Math.max(...points.map(point => point.y))
 }
 
+function getMaxValuePoints(chart) {
+    const visiblePoints = getVisiblePoints(chart.series[0].data)
+    const maxY = getMaxValue(visiblePoints);
+
+    return visiblePoints.filter(point => point.y === maxY)
+}
+
 Highcharts.chart('container', {
 
     plotOptions: {
@@ -28,7 +35,7 @@ Highcharts.chart('container', {
                         chart = this.series.chart,
                         ren = chart.renderer,
                         x = chart.plotLeft,
-                        y = chart.legend.group.translateY + chart.legend.symbolHeight;
+                        y = chart.plotTop + 15;
 
                     // If a custom label exists - update it, else create a new one
                     if (!chart.customLabel) {
@@ -56,28 +63,27 @@ Highcharts.chart('container', {
             },
             render() {
                 const chart = this,
-                    visiblePoints = getVisiblePoints(chart.series[0].data),
-                    maxY = Math.max(...visiblePoints.map(point => point.y)),
-                    maxPoints = visiblePoints.filter(point => point.y === maxY);
+                    maxValuePoints = getMaxValuePoints(chart);
 
                 // Destroy labels and reset an array at the beginning of a new render
                 chart.xAxisPoints.forEach(point => point.destroy());
                 chart.xAxisPoints.length = 0;
 
                 // Render a red dot on the xAxis 
-                maxPoints.forEach(point => {
+                maxValuePoints.forEach(point => {
                     const x = chart.xAxis[0].toPixels(point.x),
                         y = chart.xAxis[0].height + chart.plotTop;
 
-                    const xAxisPoint = chart.renderer.circle(x, y, 5).attr({
-                        fill: 'red'
-                    }).add();
+                    const xAxisPoint = chart.renderer.circle(x, y, 5)
+                        .attr({
+                            fill: 'red'
+                        }).add();
                     chart.xAxisPoints.push(xAxisPoint);
                 })
             }
         }
     },
     series: [{
-        data: randomData(1, 99, 100)
+        data: generateRandomData(1, 99, 100)
     }]
 })
