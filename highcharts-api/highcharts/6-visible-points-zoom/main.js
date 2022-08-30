@@ -8,18 +8,18 @@ function generateRandomData(minVal, maxVal, length) {
 }
 
 function getVisiblePoints(points) {
-    return points.filter(point => point.isInside)
+    return points.filter(point => point.isInside);
 }
 
 function getMaxValue(points) {
-    return Math.max(...points.map(point => point.y))
+    return Math.max(...points.map(point => point.y));
 }
 
 function getMaxValuePoints(chart) {
-    const visiblePoints = getVisiblePoints(chart.series[0].data)
-    const maxY = getMaxValue(visiblePoints);
+    const visiblePoints = getVisiblePoints(chart.series[0].data),
+        maxY = getMaxValue(visiblePoints);
 
-    return visiblePoints.filter(point => point.y === maxY)
+    return visiblePoints.filter(point => point.y === maxY);
 }
 
 Highcharts.chart('container', {
@@ -41,12 +41,12 @@ Highcharts.chart('container', {
                     if (!chart.customLabel) {
                         chart.customLabel = ren.text(`Visible points: ${visiblePoints.length}`, x, y).add().toFront();
                     } else {
-                        chart.customLabel.attr({ text: `Visible points: ${visiblePoints.length}` })
+                        chart.customLabel.attr({ text: `Visible points: ${visiblePoints.length}` });
                     }
 
                     // Return max value red labels
                     if (this.y === maxY) {
-                        return this.y
+                        return this.y;
                     }
                 }
             }
@@ -69,7 +69,7 @@ Highcharts.chart('container', {
                 chart.xAxisPoints.forEach(point => point.destroy());
                 chart.xAxisPoints.length = 0;
 
-                // Render a red dot on the xAxis 
+                // Render a red dot on the xAxis
                 maxValuePoints.forEach(point => {
                     const x = chart.xAxis[0].toPixels(point.x),
                         y = chart.xAxis[0].height + chart.plotTop;
@@ -83,7 +83,8 @@ Highcharts.chart('container', {
             }
         }
     },
+
     series: [{
         data: generateRandomData(1, 99, 100)
     }]
-})
+});
