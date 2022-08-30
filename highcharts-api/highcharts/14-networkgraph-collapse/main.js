@@ -1,4 +1,4 @@
-function showNode(link) {
+function showNodeAndLink(link) {
     link.graphic.show();
     link.toNode.graphic.show().css({
         display: 'block'
@@ -8,7 +8,7 @@ function showNode(link) {
     });
 }
 
-function hideNode(link) {
+function hideNodeAndLink(link) {
     link.graphic.hide();
     link.toNode.graphic.hide().css({
         display: 'none'
@@ -28,14 +28,14 @@ function handleClick(e) {
         point.linksHidden = false;
 
         point.linksFrom.forEach(link => {
-            hideNode(link);
+            hideNodeAndLink(link);
         });
 
     } else {
         point.linksHidden = true;
 
         point.linksFrom.forEach(link => {
-            showNode(link);
+            showNodeAndLink(link);
         });
     }
 }
@@ -49,7 +49,7 @@ Highcharts.chart('container', {
                 const chart = this;
 
                 chart.series[0].points.forEach(point => {
-                    hideNode(point);
+                    hideNodeAndLink(point);
                 });
             }
         }
