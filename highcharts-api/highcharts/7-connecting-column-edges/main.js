@@ -7,13 +7,15 @@ function randomData(minVal, maxVal, length) {
 }
 
 function drawLine(chart, points, attr) {
-    return chart.renderer.path(['M', points.x1, points.y1, 'L', points.x2, points.y2])
+    return chart.renderer.path([
+        'M', points.x1, points.y1, 'L', points.x2, points.y2
+        ])
         .attr({
             'stroke-width': attr.strokeWidth,
-            stroke: attr.color,
-            zIndex: 3
+            stroke: attr.color
         })
-        .add();
+        .add()
+        .toFront();
 }
 
 function renderLines(chart) {
