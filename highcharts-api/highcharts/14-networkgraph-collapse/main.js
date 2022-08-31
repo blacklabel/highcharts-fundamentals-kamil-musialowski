@@ -33,6 +33,7 @@ function handleClick(e) {
         clickedPoint.linksHidden = true;
 
         clickedPoint.linksFrom.forEach(link => {
+            link.toNode.linksHidden = false;
             toggleNodeAndLinkVisibility(link, true);
         });
     }
