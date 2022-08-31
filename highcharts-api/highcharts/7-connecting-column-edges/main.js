@@ -6,7 +6,7 @@ function randomData(minVal, maxVal, length) {
     return newArr;
 }
 
-function drawLine(chart, points, attr) {
+function drawLine(chart, series, points, attr) {
     return chart.renderer.path([
         'M', points.x1, points.y1, 'L', points.x2, points.y2
         ])
@@ -14,7 +14,7 @@ function drawLine(chart, points, attr) {
             'stroke-width': attr.strokeWidth,
             stroke: attr.color
         })
-        .add()
+        .add(series.group)
         .toFront();
 }
 
@@ -32,11 +32,11 @@ function renderLines(chart) {
                 point2 = pointsArr[i + 1],
                 strokeWidth = 2;
 
-            linesArr.push(drawLine(chart, {
-                x1: chart.plotLeft + point1.shapeArgs.x + point1.pointWidth - 1,
-                y1: chart.plotTop + point1.plotY + strokeWidth,
-                x2: chart.plotLeft + point2.shapeArgs.x + 1,
-                y2: chart.plotTop + point2.plotY + strokeWidth,
+            linesArr.push(drawLine(chart, series, {
+                x1: point1.shapeArgs.x + point1.pointWidth - 1,
+                y1: point1.plotY + strokeWidth,
+                x2: point2.shapeArgs.x + 1,
+                y2: point2.plotY + strokeWidth,
             }, {
                 color: series.color,
                 strokeWidth
