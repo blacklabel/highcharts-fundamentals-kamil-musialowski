@@ -1,20 +1,21 @@
-function showNodeAndLink(link) {
-    link.graphic.show();
-    link.toNode.graphic.show().css({
-        display: 'block'
-    });
-    link.toNode.dataLabel.show().css({
-        display: 'block'
-    });
+function toggleNodeAndLinkVisibility(link, setVisibility) {
+    const display = setVisibility ? 'block' : 'none',
+        visibility = setVisibility ? 'visible' : 'hidden';
+
+    link.graphic.css({ visibility, display });
+    link.toNode.graphic.css({ visibility, display });
+    link.toNode.dataLabel.css({ visibility, display });
 }
 
-function hideNodeAndLink(link) {
-    link.graphic.hide();
-    link.toNode.graphic.hide().css({
-        display: 'none'
-    });
-    link.toNode.dataLabel.hide().css({
-        display: 'none'
+function hideAllChildren(point) {
+    point.linksFrom.forEach(link => {
+        const point = link.toNode;
+
+        toggleNodeAndLinkVisibility(link, false);
+
+        if(point.linksFrom.length) {
+            hideAllChildren(point);
+        }
     });
 }
 
@@ -27,24 +28,12 @@ function handleClick(e) {
     if (clickedPoint.linksHidden) {
         clickedPoint.linksHidden = false;
 
-        function hideAllChildren(point) {
-            point.linksFrom.forEach(link => {
-                const point = link.toNode;
-
-                hideNodeAndLink(link);
-
-                if(point.linksFrom.length) {
-                    hideAllChildren(point);
-                }
-            });
-        }
         hideAllChildren(clickedPoint);
-
     } else {
         clickedPoint.linksHidden = true;
 
         clickedPoint.linksFrom.forEach(link => {
-            showNodeAndLink(link);
+            toggleNodeAndLinkVisibility(link, true);
         });
     }
 }
@@ -58,7 +47,7 @@ Highcharts.chart('container', {
                 const chart = this;
 
                 chart.series[0].points.forEach(point => {
-                    hideNodeAndLink(point);
+                    toggleNodeAndLinkVisibility(point, false);
                 });
             }
         }
