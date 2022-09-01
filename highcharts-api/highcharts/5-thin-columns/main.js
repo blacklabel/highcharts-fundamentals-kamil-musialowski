@@ -18,7 +18,7 @@ function createSeriesArr(length) {
 const chart = Highcharts.chart('container', {
 
     chart: {
-        type: 'column',
+        type: 'column'
     },
 
     plotOptions: {
@@ -30,12 +30,12 @@ const chart = Highcharts.chart('container', {
     },
 
     legend: {
-        enabled: false,
+        enabled: false
     },
 
     xAxis: {
-        categories: ['BANK 1', 'BANK 2', 'BANK 3', 'BANK 4', 'BANK 5'],
+        categories: ['BANK 1', 'BANK 2', 'BANK 3', 'BANK 4', 'BANK 5']
     },
 
-    series: createSeriesArr(100),
+    series: createSeriesArr(100)
 })
