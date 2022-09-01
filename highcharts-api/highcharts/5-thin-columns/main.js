@@ -25,7 +25,7 @@ const chart = Highcharts.chart('container', {
         series: {
             pointPadding: 0,
             borderWidth: 0,
-            color: 'red'
+            color: '#ff0000'
         }
     },
 
