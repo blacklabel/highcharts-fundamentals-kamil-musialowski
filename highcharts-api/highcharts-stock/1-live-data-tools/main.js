@@ -33,7 +33,7 @@ function toggleLiveData(chart, index) {
     }
 }
 
-function updateDataGrouping(chart, options) {
+function updateSeriesOptions(chart, options) {
     chart.series[0].update(options);
 }
 
@@ -102,7 +102,7 @@ Highcharts.stockChart('container', {
                         },
                         lineWidth: 5
                     }
-                    updateDataGrouping(chart, options);
+                    updateSeriesOptions(chart, options);
                 }
             },
             dataGrouping1: {
@@ -115,7 +115,7 @@ Highcharts.stockChart('container', {
                         },
                         lineWidth: 10
                     }
-                    updateDataGrouping(chart, options);
+                    updateSeriesOptions(chart, options);
                 }
             }
         }
