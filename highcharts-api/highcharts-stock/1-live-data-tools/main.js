@@ -1,17 +1,12 @@
 let liveData = [];
 
 function getData() {
-    const data = [],
-        time = (new Date()).getTime();
+    const time = (new Date()).getTime();
 
-    for (let i = -100; i <= 0; i += 1) {
-        data.push([
-            time + i * 1000,
-            Math.round(Math.random() * 100)
-        ]);
-    }
-
-    return data;
+return Array.from({ length: 100 }, (_, i) => [
+   time + (i - 100) * 1000,
+   Math.round(Math.random() * 100)
+]);
 }
 
 function startLiveData(chart) {
