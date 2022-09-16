@@ -1,0 +1,12 @@
+.live-data-btn-0 .highcharts-menu-item-btn,
+.live-data-btn-1 .highcharts-menu-item-btn {
+    background-image: url("https://cdn-icons-png.flaticon.com/512/1246/1246264.png") !important;
+}
+
+.data-grouping-btn-0 .highcharts-menu-item-btn {
+    background-image: url("https://cdn-icons-png.flaticon.com/512/565/565813.png") !important;
+}
+
+.data-grouping-btn-1 .highcharts-menu-item-btn {
+    background-image: url("https://cdn-icons-png.flaticon.com/128/3522/3522837.png") !important;
+}
