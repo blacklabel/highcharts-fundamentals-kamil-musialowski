@@ -1,8 +1,8 @@
-function getRandomData(minVal, maxVal, length) {
+function getRandomData(min, max, length) {
     const newArr = [];
 
     for (let i = 0; i < length; i++) {
-        newArr.push(Math.round(Math.random() * (maxVal - minVal)) + minVal);
+        newArr.push(Math.round(Math.random() * (max - min)) + min);
     }
     return newArr;
 }
